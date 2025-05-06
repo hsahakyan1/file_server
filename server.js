@@ -4,8 +4,8 @@ const path = require('path');
 const os = require('os');
 
 const PORT = 3000;
-const USERNAME = 'hrach';
-const PASSWORD = '2003';
+const USERNAME = 'admin';
+const PASSWORD = 'admin';
 
 
 const HOME_DIR = os.homedir();
