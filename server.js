@@ -1,13 +1,13 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const os = require('os'); // Ավելացնում ենք OS մոդուլը home դիրեկտորիայի համար
+const os = require('os');
 
 const PORT = 3000;
 const USERNAME = 'hrach';
 const PASSWORD = '2003';
 
-// Ստանում ենք օգտագործողի home դիրեկտորիան
+
 const HOME_DIR = os.homedir();
 
 function checkAuth(req, res) {
@@ -36,10 +36,10 @@ const server = http.createServer((req, res) => {
   const requestedPath = decodeURIComponent(req.url.split('?')[0]);
   const safePath = path.normalize(requestedPath).replace(/^(\.\.(\/|\\|$))+/, '');
   
-  // Սահմանափակում ենք մուտքը միայն HOME_DIR-ի ներսում
+  
   const fullPath = path.join(HOME_DIR, safePath);
 
-  // Ստուգում ենք, որ fullPath-ը դեռ HOME_DIR-ի ներսում է (համաձայն path traversal-ի)
+  
   if (!fullPath.startsWith(HOME_DIR)) {
     res.writeHead(403);
     return res.end('Access denied');
